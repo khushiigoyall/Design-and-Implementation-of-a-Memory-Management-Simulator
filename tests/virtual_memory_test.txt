@@ -1,0 +1,15 @@
+TEST: Virtual Memory with Paging
+
+Commands:
+initvm 1024 256 64
+vmaccess 0
+vmaccess 64
+vmaccess 0
+vmaccess 128
+vmstats
+
+Expected Results:
+- First access causes PAGE FAULT
+- Repeated access gives PAGE HIT
+- FIFO page replacement occurs
+- Page hits and faults counted

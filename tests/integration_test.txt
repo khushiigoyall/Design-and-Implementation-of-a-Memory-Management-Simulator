@@ -1,0 +1,15 @@
+TEST: Integrated System
+
+Commands:
+initcache 64 2 128 4 16
+initvm 1024 256 64
+vmaccess 0
+vmaccess 64
+vmaccess 0
+cachestats
+vmstats
+
+Expected Results:
+- Virtual address translated
+- Cache accessed after translation
+- Cache hit/miss + page hit/fault shown

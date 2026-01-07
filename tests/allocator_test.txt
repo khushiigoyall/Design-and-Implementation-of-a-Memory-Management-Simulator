@@ -1,0 +1,20 @@
+TEST: Dynamic Memory Allocation
+
+Commands:
+Enter memory size: 1024
+malloc 100
+malloc 200
+malloc 800
+free 1
+dump
+stats
+
+Expected Results:
+- First two allocations succeed
+- Third allocation fails
+- Freed block is reused
+- dump shows free + allocated blocks
+- stats shows:
+  Allocation Requests = 3
+  Failed Allocations = 1
+  Memory Utilization < 100%

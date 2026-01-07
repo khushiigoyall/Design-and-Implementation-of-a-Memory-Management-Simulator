@@ -1,0 +1,15 @@
+TEST: Buddy Allocation System
+
+Commands:
+initbuddy 1024
+buddyalloc 100
+buddyalloc 200
+buddydump
+buddyfree 0
+buddyfree 256
+buddydump
+
+Expected Results:
+- Sizes rounded to powers of two
+- Blocks split during allocation
+- Free blocks merge after buddyfree

@@ -1,0 +1,15 @@
+TEST: Multilevel Cache Simulation
+
+Commands:
+initcache 64 2 128 4 16
+accesscache 0
+accesscache 16
+accesscache 0
+accesscache 32
+cachestats
+
+Expected Results:
+- First access is MISS
+- Repeated access gives HIT
+- L1 and L2 hit/miss stats displayed
+- Hit ratio computed correctly
