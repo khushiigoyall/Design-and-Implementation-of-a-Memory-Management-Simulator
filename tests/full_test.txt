@@ -1,0 +1,136 @@
+========================================================
+Memory Management Simulator – System Validation Test
+========================================================
+
+This test script validates all major components of the
+Memory Management Simulator using a continuous workflow.
+The goal is to verify correct behavior across allocation,
+buddy system, cache, and virtual memory subsystems.
+
+--------------------------------------------------------
+INITIALIZATION
+--------------------------------------------------------
+
+Enter memory size:
+1024
+
+--------------------------------------------------------
+DYNAMIC MEMORY ALLOCATION
+--------------------------------------------------------
+
+set first
+malloc 120
+malloc 300
+malloc 80
+free 2
+malloc 150
+dump
+stats
+
+Expected:
+- Memory allocated using First Fit
+- Freed block reused where possible
+- dump shows correct block layout
+- stats reports utilization and fragmentation
+
+--------------------------------------------------------
+ALLOCATION STRATEGY CHANGE
+--------------------------------------------------------
+
+set best
+malloc 60
+set worst
+malloc 200
+dump
+
+Expected:
+- Best Fit selects smallest suitable block
+- Worst Fit selects largest free block
+
+--------------------------------------------------------
+BUDDY MEMORY ALLOCATION
+--------------------------------------------------------
+
+initbuddy 1024
+buddyalloc 90
+buddyalloc 200
+buddyalloc 400
+buddydump
+
+buddyfree 0
+buddyfree 512
+buddydump
+
+Expected:
+- Allocation sizes rounded to powers of two
+- Blocks split correctly
+- Buddy blocks merge when both are free
+
+--------------------------------------------------------
+CACHE HIERARCHY TEST (L1 & L2)
+--------------------------------------------------------
+
+initcache 64 2 128 4 16
+accesscache 0
+accesscache 16
+accesscache 32
+accesscache 0
+accesscache 48
+accesscache 16
+cachestats
+
+Expected:
+- Initial accesses cause misses
+- Repeated accesses produce hits
+- FIFO eviction occurs when sets are full
+- Hit and miss statistics are correct
+
+--------------------------------------------------------
+VIRTUAL MEMORY PAGING
+--------------------------------------------------------
+
+initvm 1024 256 64
+vmaccess 0
+vmaccess 64
+vmaccess 128
+vmaccess 0
+vmaccess 192
+vmstats
+
+Expected:
+- Page faults on first access to new pages
+- FIFO page replacement when frames are full
+- Page hits on repeated access
+
+--------------------------------------------------------
+INTEGRATED MEMORY ACCESS PIPELINE
+--------------------------------------------------------
+
+vmaccess 0
+vmaccess 64
+vmaccess 0
+cachestats
+vmstats
+
+Expected:
+- Virtual address translated before cache access
+- Cache accessed using physical address
+- Consistent page and cache statistics
+
+--------------------------------------------------------
+FINAL STATE CHECK
+--------------------------------------------------------
+
+dump
+stats
+
+Expected:
+- Memory state consistent
+- No corrupted blocks
+- Statistics reflect all operations
+
+--------------------------------------------------------
+END OF TEST
+--------------------------------------------------------
+
+exit

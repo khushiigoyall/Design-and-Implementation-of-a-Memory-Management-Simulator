@@ -8,6 +8,7 @@ It simulates multiple memory management components, including **physical memory 
 The goal of this project is to provide a clear and practical understanding of memory management concepts through interactive commands and observable system behavior.
 
 ---
+## Demo Video
 
 ## Features
 
