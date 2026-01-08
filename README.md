@@ -52,6 +52,7 @@ memory-management-simulator/
 │
 ├── tests/
 │ ├── allocator_test.txt
+| ├── full_test.txt
 │ ├── buddy_test.txt
 │ ├── cache_test.txt
 │ ├── virtual_memory_test.txt
