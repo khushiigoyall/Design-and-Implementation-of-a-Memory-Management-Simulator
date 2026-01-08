@@ -9,6 +9,8 @@ The goal of this project is to provide a clear and practical understanding of me
 
 ---
 ## Demo Video
+https://github.com/user-attachments/assets/dcc32442-27ba-430e-a271-bcd40158cdd1
+
 
 ## Features
 
